@@ -26,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/chivincent-rosetta/insomnia-plugin-laravel-csrf/issues"
   },
-  "homepage": "https://github.com/chivincent-rosetta/insomnia-plugin-laravel-csrf#readme"
+  "homepage": "https://github.com/chivincent-rosetta/insomnia-plugin-laravel-csrf#readme",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
 }
