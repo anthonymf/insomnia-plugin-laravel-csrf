@@ -1,0 +1,26 @@
+{
+  "name": "insomnia-plugin-laravel-csrf",
+  "version": "0.1.0",
+  "description": "The insominia plugin for setting X-XSRF-TOKEN header in request from XSRF-TOKEN cookie in laravel applications.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chivincent-rosetta/insomnia-plugin-laravel-csrf.git"
+  },
+  "keywords": [
+    "insomnia",
+    "plugin",
+    "laravel",
+    "csrf",
+    "laravel-sanctum"
+  ],
+  "author": "Vincent Chi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chivincent-rosetta/insomnia-plugin-laravel-csrf/issues"
+  },
+  "homepage": "https://github.com/chivincent-rosetta/insomnia-plugin-laravel-csrf#readme"
+}
