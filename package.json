@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/chivincent-rosetta/insomnia-plugin-laravel-csrf#readme",
   "devDependencies": {
+    "insomnia-cookies": "^2.2.24",
     "jest": "^26.6.3"
   }
 }
