@@ -1,7 +1,11 @@
 {
   "name": "insomnia-plugin-laravel-csrf",
   "version": "0.1.0",
-  "description": "The insominia plugin for setting X-XSRF-TOKEN header in request from XSRF-TOKEN cookie in laravel applications.",
+  "description": "The insomnia plugin for setting X-XSRF-TOKEN header in request from XSRF-TOKEN cookie in laravel applications.",
+  "insomnia": {
+    "name": "laravel-csrf",
+    "description": "For setting X-XSRF-TOKEN header in request from XSRF-TOKEN cookie in Laravel applications."
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
