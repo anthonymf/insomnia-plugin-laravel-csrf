@@ -11,9 +11,13 @@ module.exports.templateTags = [{
             throw new Error(`Cookie jar not found`);
         }
 
-        console.log(cookieJar.cookies.find(e => e.key === 'XSRF-TOKEN'));
+        const token = cookieJar.cookies.find(e => e.key === 'XSRF-TOKEN');
 
-        return null;
+        if (token === undefined) {
+            throw new Error(`XSRF-TOKEN not found in cookies`);
+        }
+
+        return decodeURIComponent(token.value);
     },
 
     async getWorkspace(context) {
