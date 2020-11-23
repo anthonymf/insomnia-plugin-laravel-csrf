@@ -4,6 +4,16 @@ module.exports.templateTags = [{
     description: 'Apply XSRF-TOKEN from cookie for X-XSRF-TOKEN',
     async run(context) {
         const workspace = await this.getWorkspace(context);
+
+        const cookieJar = await context.util.models.cookieJar.getOrCreateForWorkspace(workspace);
+
+        if (!cookieJar) {
+            throw new Error(`Cookie jar not found`);
+        }
+
+        console.log(cookieJar.cookies.find(e => e.key === 'XSRF-TOKEN'));
+
+        return null;
     },
 
     async getWorkspace(context) {
