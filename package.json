@@ -6,7 +6,7 @@
     "name": "laravel-csrf",
     "description": "For setting X-XSRF-TOKEN header in request from XSRF-TOKEN cookie in Laravel applications."
   },
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
