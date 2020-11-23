@@ -1,17 +1,22 @@
 module.exports.templateTags = [{
-    name: 'CSRF',
+    name: 'laravel_csrf',
     displayName: 'Laravel CSRF',
-    description: 'Apply XSRF-TOKEN from cookie for X-XSRF-TOKEN',
+    description: 'Apply XSRF-TOKEN from cookie for X-XSRF-TOKEN request header',
     async run(context) {
-        const workspace = await this.getWorkspace(context);
+        const token = (await this.getCookieJar(context))?.cookies.find(cookie => cookie.key === 'XSRF-TOKEN');
+
+        if (token === undefined) {
+            throw new Error(`XSRF-TOKEN not found in cookies`);
+        }
+
+        return decodeURIComponent(token.value);
     },
 
-    async getWorkspace(context) {
+    async getCookieJar(context) {
         const { meta } = context;
 
-        // Cannot get request and workspace metadata.
         if (!meta.requestId || !meta.workspaceId) {
-            return null;
+            throw new Error(`Request ID or workspace ID not found`);
         }
 
         const workspace = await context.util.models.workspace.getById(meta.workspaceId);
@@ -20,6 +25,12 @@ module.exports.templateTags = [{
             throw new Error(`Workspace not found for ${meta.workspaceId}`);
         }
 
-        return workspace;
-    }
+        const cookieJar = await context.util.models.cookieJar.getOrCreateForWorkspace(workspace);
+
+        if (!cookieJar) {
+            throw new Error(`Cookie jar not found for ${meta.workspaceId}`);
+        }
+
+        return cookieJar;
+    },
 }];
