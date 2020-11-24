@@ -1,6 +1,6 @@
 {
   "name": "insomnia-plugin-laravel-csrf",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The insomnia plugin for setting X-XSRF-TOKEN header in request from XSRF-TOKEN cookie in laravel applications.",
   "insomnia": {
     "name": "laravel-csrf",
