@@ -139,7 +139,27 @@ describe('Plugin', () => {
             const result = await tag.run(context);
 
             expect(result).toBe('HelloWorld=');
-        })
+        });
+
+        it('Use comtomize CSRF cookie name', async () => {
+            const jar = jarFromCookies([]);
+            jar.setCookieSync(
+                [
+                    'CUSTOM-CSRF-TOKEN=this-is-customize-csrf-token%3D',
+                    'path=/',
+                    'HttpOnly Cache-Control: public, no-cache',
+                ].join('; '),
+                'http://localhost'
+            );
+            const cookies = await cookiesFromJar(jar);
+            const context = _getContext(
+                [{_id: 'wrk_1'}],
+                [{_id: 'jar_1', parentId: 'wrk_1', cookies}]
+            );
+            const result = await tag.run(context, 'CUSTOM-CSRF-TOKEN');
+
+            expect(result).toBe('this-is-customize-csrf-token=');
+        });
     });
 });
 
