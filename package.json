@@ -8,7 +8,7 @@
   },
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,9 @@
   "bugs": {
     "url": "https://github.com/chivincent-rosetta/insomnia-plugin-laravel-csrf/issues"
   },
-  "homepage": "https://github.com/chivincent-rosetta/insomnia-plugin-laravel-csrf#readme"
+  "homepage": "https://github.com/chivincent-rosetta/insomnia-plugin-laravel-csrf#readme",
+  "devDependencies": {
+    "insomnia-cookies": "^2.2.24",
+    "jest": "^26.6.3"
+  }
 }
