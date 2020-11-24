@@ -2,11 +2,21 @@ module.exports.templateTags = [{
     name: 'laravel_csrf',
     displayName: 'Laravel CSRF',
     description: 'Apply XSRF-TOKEN from cookie for X-XSRF-TOKEN request header',
-    async run(context) {
-        const token = (await this.getCookieJar(context))?.cookies.find(cookie => cookie.key === 'XSRF-TOKEN');
+    args: [
+        {
+            displayName: 'CSRF Cookie Name',
+            type: 'string',
+            defaultValue: 'XSRF-TOKEN',
+            placeholder: 'It is "XSRF-TOKEN" by default in laravel',
+        }
+    ],
+    async run(context, cookieName = 'XSRF-TOKEN') {
+        const cookieJar = await this.getCookieJar(context);
+
+        const token = cookieJar.cookies?.find(cookie => cookie.key === cookieName);
 
         if (token === undefined) {
-            throw new Error(`XSRF-TOKEN not found in cookies`);
+            throw new Error(`${cookieName} not found in cookies`);
         }
 
         return decodeURIComponent(token.value);
